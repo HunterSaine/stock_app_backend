@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from routers import stock
+from app.routers import stock
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Stock Prediction API", version= "1.0.0")
@@ -12,7 +12,7 @@ app.add_middleware(
     allow_methods=["GET", "POST"],  # Add other methods if necessary
     allow_headers=["*"],  # Allows all headers, you can adjust for more security
 )
-app.include_router(stock.router, prefix = "/stock", tags=["Stock Data"])
+app.include_router(stock.router, prefix ="/stock", tags=["Stock Data"])
 
 @app.get("/")
 async def root():

@@ -6,7 +6,7 @@ router = APIRouter()
 
 
 @router.get("/{ticker}")
-async def get_stock_data(ticker: str, interval: str = "1d", period: str = "1mo"):
+async def get_stock_data(ticker: str, interval: str = "1d", period: str = "1y"):
     stock = yf.Ticker(ticker)
     stockName = stock.info['shortName']
     data = stock.history(interval=interval, period=period)
