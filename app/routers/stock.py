@@ -21,6 +21,7 @@ async def get_stock_data(ticker: str, interval: str = "1d", period: str = "1y"):
     logging.info(f"Data found for the given ticker: {ticker}")
     return data_list
 
+
 @router.get("/{ticker}/info")
 async def get_stock_info(ticker: str):
     stock = yf.Ticker(ticker)

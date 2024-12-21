@@ -14,6 +14,7 @@ app.add_middleware(
 )
 app.include_router(stock.router, prefix ="/stock", tags=["Stock Data"])
 
+
 @app.get("/")
 async def root():
     return {"message": "Backend is up and running"}
