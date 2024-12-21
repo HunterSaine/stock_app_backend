@@ -7,7 +7,7 @@ app = FastAPI(title="Stock Prediction API", version= "1.0.0")
 # CORS middleware configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:4200"],  # Allows requests from your Angular app
+    allow_origins=["*"],  # Allows requests from your Angular app
     allow_credentials=True,
     allow_methods=["GET", "POST"],  # Add other methods if necessary
     allow_headers=["*"],  # Allows all headers, you can adjust for more security
