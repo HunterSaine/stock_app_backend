@@ -9,7 +9,7 @@ router = APIRouter()
 
 @router.get("/{ticker}")
 async def predict_stock_price(ticker: str):
-    data = yf.Ticker(ticker).history(period="2y")
+    data = yf.Ticker(ticker).history(period="6mo")
     if data.empty:
         logging.info(f"No historical data found for ticker: {ticker}")
         raise HTTPException(
@@ -22,11 +22,11 @@ async def predict_stock_price(ticker: str):
     model = Prophet()
     model.fit(data)
 
-    future = model.make_future_dataframe(periods=90)
+    future = model.make_future_dataframe(periods=30)
 
     forecast = model.predict(future)
 
-    predictions = forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].tail(90)
+    predictions = forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].tail(30)
     predictions = predictions.rename(
         columns={'ds': 'Date', 'yhat': 'Predicted', 'yhat_lower': 'Lower', 'yhat_upper': 'Upper'}, )
 

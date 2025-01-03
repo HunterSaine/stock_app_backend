@@ -13,7 +13,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.include_router(stock.router, prefix ="/stock", tags=["Stock Data"])
-app.include_router(predict.router, prefix="/predict", tags=["Stock Prediction"])
+#app.include_router(predict.router, prefix="/predict", tags=["Stock Prediction"])
 
 
 @app.get("/")
