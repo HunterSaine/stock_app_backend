@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.routers import stock
+from app.routers import stock, predict
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Stock Prediction API", version= "1.0.0")
@@ -7,12 +7,13 @@ app = FastAPI(title="Stock Prediction API", version= "1.0.0")
 # CORS middleware configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows requests from your Angular app
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["GET", "POST"],  # Add other methods if necessary
-    allow_headers=["*"],  # Allows all headers, you can adjust for more security
+    allow_methods=["GET", "POST"],
+    allow_headers=["*"],
 )
 app.include_router(stock.router, prefix ="/stock", tags=["Stock Data"])
+app.include_router(predict.router, prefix="/predict", tags=["Stock Prediction"])
 
 
 @app.get("/")
